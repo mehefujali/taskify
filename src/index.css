@@ -2,13 +2,19 @@
 
 @theme {
   
-  --color-background-light: #f5f5f5;
-  --color-background-dark: #212121;
-  --color-text-light: #333333;
-  --color-text-dark: #ffffff;
-  --color-primary-light: #4caf50;
-  --color-primary-dark: #81c784;
-  --color-secondary-light: #ffc107;
-  --color-secondary-dark: #ffd54f;
+/* Light Mode */
+--color-background-light: rgb(245, 246, 250); /* Soft White with Blue Tint */
+--color-text-light: #1f2937; /* Dark Gray - Better Contrast */
+--color-primary-light: #27305c; /* Dark Blue - Bold & Professional */
+--color-secondary-light: #73b8b2; /* Muted Teal - Calm & Elegant */
+
+/* Dark Mode */
+--color-background-dark: #1e293b; /* Navy Blue - Elegant Dark Mode */
+--color-text-dark: #e5e7eb; /* Light Gray - Softer Than Pure White */
+--color-primary-dark: #3b82f6; /* Lighter Blue for Highlights */
+--color-secondary-dark: #73b8b2; /* Muted Teal - Consistent Across Themes */
+
+
  
 }
+
