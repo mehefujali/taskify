@@ -15,8 +15,7 @@ const Main = () => {
           <Sidenav />
         </div>
         <div className=" p-5  md:col-span-9 xl:col-span-10 h-full overflow-y-auto">
-          <MyButton>Hello bro</MyButton>
-          <MyButton dark>Hello bro</MyButton>
+          <MyButton>Hello </MyButton>
           <h1>hell</h1>
           <h1>hell</h1>
           <h1>hell</h1>

@@ -1,8 +1,10 @@
 import { Button } from "@material-tailwind/react";
 import PropTypes from "prop-types";
+import useDark from "../Hooks/useDark";
 
 
-const MyButton = ({children,dark}) => {
+const MyButton = ({children}) => {
+      const dark = useDark()
       return (
             <Button 
             className={` rounded ${dark?"bg-secondary-dark":"bg-primary-light"} cursor-pointer `}
