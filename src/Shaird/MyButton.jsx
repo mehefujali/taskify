@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const MyButton = ({children,dark}) => {
       return (
             <Button 
-            className={` rounded ${dark?"bg-secondary-light":"bg-primary-light"} cursor-pointer `}
+            className={` rounded ${dark?"bg-secondary-dark":"bg-primary-light"} cursor-pointer `}
             >{children}</Button>
       );
 };

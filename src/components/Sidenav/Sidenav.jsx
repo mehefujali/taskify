@@ -2,7 +2,7 @@
 
 const Sidenav = () => {
       return (
-            <div className=" ">
+            <div className=" h-full w-full ">
                   
             </div>
       );
