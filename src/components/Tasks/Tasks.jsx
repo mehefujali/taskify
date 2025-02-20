@@ -17,7 +17,7 @@ const Tasks = () => {
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
-    if (!destination) return;
+    // if (!destination) return;
 
     const sourceColumn = source.droppableId;
     const destinationColumn = destination.droppableId;
@@ -84,7 +84,7 @@ const Tasks = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="p-3 theme-border rounded shadow-sm cursor-grab"
+                        className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30"
                       >
                         <h1 className="font-bold text-lg">{item.title}</h1>
                         <p>{item.description}</p>

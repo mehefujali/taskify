@@ -49,3 +49,6 @@ body {
 .theme-text{
   color: var(--color-text);
 }
+.theme-shadow{
+  box-shadow: var(--color-text);
+}
