@@ -5,6 +5,7 @@ import { RiProgress2Line, RiTodoLine } from "react-icons/ri";
 import MyButton from "../../Shaird/MyButton";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthProvider";
+import { CiMenuKebab } from "react-icons/ci";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState({});
@@ -60,14 +61,14 @@ const Tasks = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="grid grid-cols-3 gap-4 h-full">
+      <div className="grid grid-cols-3 gap-2 xl:gap-4 h-full">
         {Object.entries(tasks).map(([column, items]) => (
           <Droppable key={column} droppableId={column}>
             {(provided) => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="theme-border rounded p-4  overflow-x-hidden border-2 min-h-full space-y-2 overflow-y-auto"
+                className="theme-border rounded p-2 xl:p-4  overflow-x-hidden border-2 min-h-full space-y-2 overflow-y-auto"
               >
                 <h2 className="text-lg font-bold mb-4 capitalize flex theme-border-b pb-3 items-center gap-1">
                   {column === "todo" && <RiTodoLine />}
@@ -86,10 +87,11 @@ const Tasks = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30 theme-card-bg"
+                        className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30 theme-card-bg pt-6 relative"
                       >
-                        <h1 className="font-bold text-lg">{item.title}</h1>
-                        <p>{item.description}</p>
+                        <p className=" absolute top-2 right-1 cursor-pointer p-3"><CiMenuKebab /></p>
+                        <h1 className="font-bold text-sm lg:text-lg">{item.title}</h1>
+                        <p className=" text-xs lg:text-sm">{item.description}</p>
                       </div>
                     )}
                   </Draggable>
