@@ -67,7 +67,7 @@ const Tasks = () => {
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="theme-border rounded p-4  border-2 min-h-full space-y-2 overflow-y-auto"
+                className="theme-border rounded p-4  overflow-x-hidden border-2 min-h-full space-y-2 overflow-y-auto"
               >
                 <h2 className="text-lg font-bold mb-4 capitalize flex theme-border-b pb-3 items-center gap-1">
                   {column === "todo" && <RiTodoLine />}
