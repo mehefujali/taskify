@@ -1,7 +1,9 @@
 
 import NavBar from "../components/NavBar/NavBar";
 import Sidenav from "../components/Sidenav/Sidenav";
-import MyButton from "../Shaird/MyButton";
+import Tasks from "../components/Tasks/Tasks";
+
+
 
 const Main = () => {
   return (
@@ -15,54 +17,7 @@ const Main = () => {
           <Sidenav />
         </div>
         <div className=" p-5  md:col-span-9 xl:col-span-10 h-full overflow-y-auto">
-          <MyButton>Hello </MyButton>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
-          <h1>hell</h1>
+    <Tasks/>
         </div>
       </div>
     </div>
