@@ -6,11 +6,20 @@ import MyButton from "../../Shaird/MyButton";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthProvider";
 import { CiMenuKebab } from "react-icons/ci";
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 
+} from "@material-tailwind/react";
+
+import { MdDeleteOutline } from "react-icons/md";
+import { GrFormEdit } from "react-icons/gr";
 const Tasks = () => {
   const [tasks, setTasks] = useState({});
   const apiUrl = import.meta.env.VITE_API_URL;
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get(`${apiUrl}/tasks/${user?.email}`).then((res) => {
@@ -87,11 +96,31 @@ const Tasks = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30 theme-card-bg pt-6 relative"
                       >
-                        <p className=" absolute top-2 right-1 cursor-pointer p-3"><CiMenuKebab /></p>
-                        <h1 className="font-bold text-sm lg:text-lg">{item.title}</h1>
-                        <p className=" text-xs lg:text-sm">{item.description}</p>
+                        <div className=" cursor-default py-3 bg-gray-700 rounded-t w-full justify-end flex items-center">
+                          <Menu>
+                            <MenuHandler>
+                              <div>
+                                <p className=" text-white px-3 cursor-pointer">
+                                  <CiMenuKebab />
+                                </p>
+                              </div>
+                            </MenuHandler>
+                            <MenuList className=" theme-bg px-0  w-fit ">
+                              <MenuItem className=" hover:bg-black/20 rounded-none flex gap-1 items-center cursor-pointer"> <GrFormEdit/> Edit </MenuItem>
+                              <MenuItem className=" hover:bg-black/20 rounded-none flex gap-1 items-center cursor-pointer"><MdDeleteOutline/>delete</MenuItem>
+                            </MenuList>
+                          </Menu>
+                        </div>
+
+                        <div className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30 theme-card-bg  relative">
+                          <h1 className="font-bold text-sm lg:text-lg">
+                            {item.title}
+                          </h1>
+                          <p className=" text-xs lg:text-sm">
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
                     )}
                   </Draggable>
