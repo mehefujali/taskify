@@ -5,16 +5,17 @@ import { useContext } from "react";
 import { ThemeContext } from "../../Context/ThemeProvider";
 import { FaSun } from "react-icons/fa";
 import useDark from "../../Hooks/useDark";
-import { AuthContext } from "../../Context/AuthProvider";
+
+import { ProfileMenu } from "../ProfileMenu/ProfileMenu";
 
 const NavBar = () => {
-     const {user} = useContext(AuthContext)
+     
       const {theme , toggleTheme} = useContext(ThemeContext)
       const dark = useDark()
       console.log(theme)
      
   return (
-    <div className={`   border-b ${dark?"border-b-gray-700 bg-gray-900/30":'border-gray-300 bg-gray-200'} `}>
+    <div className={`   border-b ${dark?"border-b-gray-700  theme-card-bg":'border-gray-300 theme-card-bg'} `}>
       <div className=" w-full   flex justify-between items-center">
         <div className=" h-full w-fit">
           <img
@@ -29,7 +30,9 @@ const NavBar = () => {
                   <IconButton onClick={toggleTheme} variant="text" className=" rounded-full cursor-pointer">{theme==="light"?<HiMoon className=" text-2xl"/>:<FaSun className=" text-2xl text-text-dark"/>}</IconButton>
             </div>
             <div className=" cursor-pointer ">
-                  <img className=" w-8 rounded-full border-2 border-primary-light" src={user?.photoURL||""} alt="" />
+                
+
+                  <ProfileMenu></ProfileMenu>
             </div>
         </div>
       </div>

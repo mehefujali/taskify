@@ -67,7 +67,7 @@ const Tasks = () => {
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="theme-border rounded p-4 border-2 min-h-full space-y-2 overflow-y-auto"
+                className="theme-border rounded p-4  border-2 min-h-full space-y-2 overflow-y-auto"
               >
                 <h2 className="text-lg font-bold mb-4 capitalize flex theme-border-b pb-3 items-center gap-1">
                   {column === "todo" && <RiTodoLine />}
@@ -86,7 +86,7 @@ const Tasks = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30"
+                        className="p-3 theme-border rounded shadow-sm cursor-grab theme-bg shadow-background-dark/30 theme-card-bg"
                       >
                         <h1 className="font-bold text-lg">{item.title}</h1>
                         <p>{item.description}</p>

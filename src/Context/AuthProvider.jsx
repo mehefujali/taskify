@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 import { PropTypes } from "prop-types";
@@ -16,6 +16,9 @@ const AuthProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const signOutUser = () =>{
+    signOut(auth)
+  }
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -31,6 +34,7 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     loading,
+    signOutUser
   };
 
   return (

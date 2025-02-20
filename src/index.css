@@ -4,12 +4,14 @@
   
 /* Light Mode */
 --color-background-light: rgb(245, 246, 250); /* Soft White with Blue Tint */
+--color-background-light2: #e8e9eb; /* Soft White with Blue Tint */
 --color-text-light: #1f2937; /* Dark Gray - Better Contrast */
 --color-primary-light: #27305c; /* Dark Blue - Bold & Professional */
 --color-secondary-light: #73b8b2; /* Muted Teal - Calm & Elegant */
 
 /* Dark Mode */
 --color-background-dark: #1e293b; /* Navy Blue - Elegant Dark Mode */
+--color-background-dark2: #151c29; /* Navy Blue - Elegant Dark Mode */
 --color-text-dark: #e5e7eb; /* Light Gray - Softer Than Pure White */
 --color-primary-dark: #3b82f6; /* Lighter Blue for Highlights */
 --color-secondary-dark: #73b8b2; /* Muted Teal - Consistent Across Themes */
@@ -19,6 +21,7 @@
 }
 [data-theme='light'] {
   --color-background: var(--color-background-light);
+  --color-background2: var(--color-background-light2);
   --color-text: var(--color-text-light);
   --color-primary: var(--color-primary-light);
   --color-secondary: var(--color-secondary-light);
@@ -27,6 +30,7 @@
 
 [data-theme='dark'] {
   --color-background: var(--color-background-dark);
+  --color-background2: var(--color-background-dark2);
   --color-text: var(--color-text-dark);
   --color-primary: var(--color-primary-dark);
   --color-secondary: var(--color-secondary-dark);
@@ -43,12 +47,15 @@ body {
 }
 
 .theme-bg{
-  background-color: var(--color-background);
+  background-color: var(--color-background) !important;
 }
 
 .theme-text{
-  color: var(--color-text);
+  color: var(--color-text) !important;
 }
 .theme-shadow{
   box-shadow: var(--color-text);
+}
+.theme-card-bg{
+  background-color: var(--color-background2) !important;
 }
