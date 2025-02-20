@@ -2,11 +2,19 @@ import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { RiProgress2Line, RiTodoLine } from "react-icons/ri";
+import MyButton from "../../Shaird/MyButton";
 
 const initialTasks = {
-  todo: [{ id: "1", title: "Task 1" }, { id: "2", title: "Task 2" }],
-  inProgress: [{ id: "3", title: "Task 3" }],
-  done: [{ id: "4", title: "Task 4" }],
+  todo: [
+    { id: "1", title: "Task 1" },
+    { id: "2", title: "Task 2" },
+    { id: "3", title: "Task 3" },
+    { id: "4", title: "Task 4" },
+    { id: "5", title: "Task 5" },
+    
+  ],
+  inProgress: [{ id: "49", title: "Task 49" }],
+  done: [{ id: "50", title: "Task 50" }],
 };
 
 const Tasks = () => {
@@ -45,16 +53,16 @@ const Tasks = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="grid grid-cols-3 gap-4 p-4 h-full">
+      <div className="grid grid-cols-3 gap-4  h-full">
         {Object.entries(tasks).map(([column, items]) => (
           <Droppable key={column} droppableId={column}>
             {(provided) => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="border rounded-lg p-4  min-h-full"
+                className="theme-border rounded p-4  border-2 min-h-full space-y-2 overflow-y-auto "
               >
-                <h2 className="text-lg font-bold mb-4 capitalize flex items-center gap-1">
+                <h2 className="text-lg font-bold mb-4 capitalize flex theme-border-b pb-3 items-center gap-1">
                   {column==="todo"&&<RiTodoLine className=" "/>}
                   {column==="inProgress"&&<RiProgress2Line className=" "/>}
                   {column==="done"&&<IoCheckmarkDoneCircleOutline className=" "/>}
@@ -67,7 +75,7 @@ const Tasks = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="p-3 border rounded-lg shadow-sm cursor-grab"
+                        className="p-3 theme-border rounded shadow-sm cursor-grab"
                       >
                         {item.title}
                       </div>
@@ -75,6 +83,7 @@ const Tasks = () => {
                   </Draggable>
                 ))}
                 {provided.placeholder}
+                <MyButton text> Create Task +</MyButton>
               </div>
             )}
           </Droppable>
