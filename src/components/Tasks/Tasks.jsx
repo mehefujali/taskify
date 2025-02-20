@@ -1,24 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { RiProgress2Line, RiTodoLine } from "react-icons/ri";
 import MyButton from "../../Shaird/MyButton";
-
-const initialTasks = {
-  todo: [
-    { id: "1", title: "Task 1" },
-    { id: "2", title: "Task 2" },
-    { id: "3", title: "Task 3" },
-    { id: "4", title: "Task 4" },
-    { id: "5", title: "Task 5" },
-    
-  ],
-  inProgress: [{ id: "49", title: "Task 49" }],
-  done: [{ id: "50", title: "Task 50" }],
-};
+import axios from "axios";
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState({});
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    axios.get(`${apiUrl}/tasks`).then((res) => {
+      setTasks(res.data);
+    });
+  }, [apiUrl]);
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
@@ -36,6 +31,11 @@ const Tasks = () => {
         ...prevTasks,
         [sourceColumn]: items,
       }));
+
+      axios.put(`${apiUrl}/tasks/drag/${movedItem._id}`, {
+        category: destinationColumn,
+        order: destination.index,
+      });
     } else {
       const sourceItems = [...tasks[sourceColumn]];
       const destinationItems = [...tasks[destinationColumn]];
@@ -48,28 +48,37 @@ const Tasks = () => {
         [sourceColumn]: sourceItems,
         [destinationColumn]: destinationItems,
       }));
+
+      axios.put(`${apiUrl}/tasks/drag/${movedItem._id}`, {
+        category: destinationColumn,
+        order: destination.index,
+      });
     }
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="grid grid-cols-3 gap-4  h-full">
+      <div className="grid grid-cols-3 gap-4 h-full">
         {Object.entries(tasks).map(([column, items]) => (
           <Droppable key={column} droppableId={column}>
             {(provided) => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="theme-border rounded p-4  border-2 min-h-full space-y-2 overflow-y-auto "
+                className="theme-border rounded p-4 border-2 min-h-full space-y-2 overflow-y-auto"
               >
                 <h2 className="text-lg font-bold mb-4 capitalize flex theme-border-b pb-3 items-center gap-1">
-                  {column==="todo"&&<RiTodoLine className=" "/>}
-                  {column==="inProgress"&&<RiProgress2Line className=" "/>}
-                  {column==="done"&&<IoCheckmarkDoneCircleOutline className=" "/>}
+                  {column === "todo" && <RiTodoLine />}
+                  {column === "inProgress" && <RiProgress2Line />}
+                  {column === "done" && <IoCheckmarkDoneCircleOutline />}
                   {column}
-                  </h2>
-                {items.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                </h2>
+                {items?.map((item, index) => (
+                  <Draggable
+                    key={item._id}
+                    draggableId={item._id}
+                    index={index}
+                  >
                     {(provided) => (
                       <div
                         ref={provided.innerRef}
@@ -77,7 +86,8 @@ const Tasks = () => {
                         {...provided.dragHandleProps}
                         className="p-3 theme-border rounded shadow-sm cursor-grab"
                       >
-                        {item.title}
+                        <h1 className="font-bold text-lg">{item.title}</h1>
+                        <p>{item.description}</p>
                       </div>
                     )}
                   </Draggable>
