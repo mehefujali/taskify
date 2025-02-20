@@ -12,7 +12,7 @@ const NavBar = () => {
       console.log(theme)
      
   return (
-    <div className={`   border-b ${dark?"border-b-gray-700":'border-gray-300'} `}>
+    <div className={`   border-b ${dark?"border-b-gray-700 bg-gray-900/30":'border-gray-300 bg-gray-200'} `}>
       <div className=" w-full   flex justify-between items-center">
         <div className=" h-full w-fit">
           <img
