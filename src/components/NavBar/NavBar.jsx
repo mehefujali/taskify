@@ -5,8 +5,10 @@ import { useContext } from "react";
 import { ThemeContext } from "../../Context/ThemeProvider";
 import { FaSun } from "react-icons/fa";
 import useDark from "../../Hooks/useDark";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const NavBar = () => {
+     const {user} = useContext(AuthContext)
       const {theme , toggleTheme} = useContext(ThemeContext)
       const dark = useDark()
       console.log(theme)
@@ -27,7 +29,7 @@ const NavBar = () => {
                   <IconButton onClick={toggleTheme} variant="text" className=" rounded-full cursor-pointer">{theme==="light"?<HiMoon className=" text-2xl"/>:<FaSun className=" text-2xl text-text-dark"/>}</IconButton>
             </div>
             <div className=" cursor-pointer ">
-                  <img className=" w-8 rounded-full border-2 border-primary-light" src="https://i.imgur.com/jo9GwJQ.png" alt="" />
+                  <img className=" w-8 rounded-full border-2 border-primary-light" src={user?.photoURL||""} alt="" />
             </div>
         </div>
       </div>
