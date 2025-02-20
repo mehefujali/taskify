@@ -35,7 +35,17 @@
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
   
 }
+.theme-border {
+  border: var(--color-text) ;
+}
 
+.theme-bg{
+  background-color: var(--color-background);
+}
+
+.theme-text{
+  color: var(--color-text);
+}
