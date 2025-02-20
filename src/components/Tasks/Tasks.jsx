@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { RiProgress2Line, RiTodoLine } from "react-icons/ri";
 import MyButton from "../../Shaird/MyButton";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState({});
   const apiUrl = import.meta.env.VITE_API_URL;
+  const {user} = useContext(AuthContext)
 
   useEffect(() => {
-    axios.get(`${apiUrl}/tasks`).then((res) => {
+    axios.get(`${apiUrl}/tasks/${user?.email}`).then((res) => {
       setTasks(res.data);
     });
-  }, [apiUrl]);
+  }, [apiUrl, user.email]);
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
