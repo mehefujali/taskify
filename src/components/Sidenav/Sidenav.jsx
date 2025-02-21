@@ -3,22 +3,28 @@ import useDark from "../../Hooks/useDark";
 import MyButton from "../../Shaird/MyButton";
 import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
+import useTasks from "../../Hooks/useTasks";
+import toast from "react-hot-toast";
 
 const Sidenav = () => {
-  const [sowForm, setSowForm] = useState(false);
+  const [sowForm, setSowForm] = useState(true);
   const [loading, setLoading] = useState(false);
-  
+  const { refetch } = useTasks();
+
   const { user } = useContext(AuthContext);
   const dark = useDark();
   const handleCreateTask = (e) => {
-      setLoading(true)
+    setLoading(true);
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
     const timestamp = new Date().toISOString();
     const userEmail = user.email;
-
+    if (!title) {
+      setLoading(false);
+      return toast.error("Title is required");
+    }
     const task = {
       title,
       description,
@@ -26,10 +32,17 @@ const Sidenav = () => {
       userEmail,
       category: "todo",
     };
-    axios.post("http://localhost:3000/tasks", task).then((res) => {
-      console.log(res.data);
-      setLoading(false)
-    }).catch(err=>{console.log(err);setLoading(false)});
+    axios
+      .post("http://localhost:3000/tasks", task)
+      .then(() => {
+        refetch();
+        form.reset();
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   };
   return (
     <div
@@ -60,9 +73,11 @@ const Sidenav = () => {
             className=" w-full resize-none py-2 px-3 border color-text rounded "
             id=""
           ></textarea>
-          <button className=" w-full">
+          <button className=" w-full ">
             {" "}
-            <MyButton loading={loading} fullwidth={true}>Create Task</MyButton>
+            <MyButton loading={loading} fullwidth={true}>
+              Create Task
+            </MyButton>
           </button>
         </form>
       </div>
