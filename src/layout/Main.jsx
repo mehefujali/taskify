@@ -7,7 +7,7 @@ import Tasks from "../components/Tasks/Tasks";
 
 const Main = () => {
   return (
-    <div >
+    <div  className=" max-w-[1920px] mx-auto">
       <div  >
             <NavBar/>
       </div>
