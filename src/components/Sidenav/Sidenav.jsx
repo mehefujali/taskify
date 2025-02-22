@@ -25,6 +25,14 @@ const Sidenav = () => {
       setLoading(false);
       return toast.error("Title is required");
     }
+    if (title.length > 50) {
+      setLoading(false);
+      return toast.error("Title cannot be more than 50 characters");
+    }
+    if (description.length > 200) {
+      setLoading(false);
+      return toast.error("Description cannot be more than 200 characters");
+    }
     const task = {
       title,
       description,
