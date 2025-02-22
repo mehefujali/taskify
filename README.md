@@ -1,75 +1,73 @@
 # Taskify
 
-## Live Link
-[Taskify](https://taskify-k.web.app)
+![Taskify Screenshot](https://i.imgur.com/XvafsyK.png)
 
-![Taskify Preview](https://i.imgur.com/XvafsyK.png)
+## Live Demo
+[Taskify Live](https://taskify-k.web.app)
 
 ## Description
-Taskify is a task management application where users can add, edit, delete, and reorder tasks using a drag-and-drop interface. Tasks are categorized into three sections: **To-Do**, **In Progress**, and **Done**. All changes are instantly saved to the database, ensuring real-time synchronization. The app is responsive, offering a smooth experience on both desktop and mobile devices.
+Taskify is a task management application where users can add, edit, delete, and reorder tasks using a drag-and-drop interface. Tasks are categorized into three sections: **To-Do**, **In Progress**, and **Done**. Changes are instantly saved to the database, ensuring persistence.
 
 ## Features
-- **Authentication:**
-  - Google Sign-In using Firebase Authentication.
-  - User details (User ID, email, display name) are stored in MongoDB upon first login.
+- **Authentication:** Google Sign-In using Firebase Authentication.
+- **Task Management:** CRUD operations with instant save and reordering using drag-and-drop.
+- **Real-Time Updates:** Optimistic UI ensures instant feedback on actions.
+- **Responsive Design:** Fully responsive for both desktop and mobile.
+- **Bonus:** Dark mode toggle, task due dates with color indicators, and an activity log.
 
-- **Task Management:**
-  - Add, edit, delete, and reorder tasks.
-  - Drag tasks between categories and reorder within categories.
-  - Instant synchronization with MongoDB.
+## Folder Structure
+```
+.taskify
+├── .firebase
+├── dist
+├── node_modules
+├── public
+├── src
+│   ├── Auth
+│   ├── components
+│   ├── Context
+│   ├── firebase
+│   ├── Hooks
+│   ├── layout
+│   ├── Private
+│   ├── routes
+│   └── Shared
+├── .env.local
+├── .firebaserc
+├── .gitignore
+├── eslint.config.js
+├── firebase.json
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── tailwind.config.js
+└── vite.config.js
+```
 
-- **Task Attributes:**
-  - Title (max 50 characters)
-  - Description (optional, max 200 characters)
-  - Timestamp (auto-generated upon creation)
-  - Category (To-Do, In Progress, Done)
+## Dependencies
+- **Drag-and-Drop:** @dnd-kit/modifiers, react-beautiful-dnd
+- **Styling:** @material-tailwind/react, tailwindcss, @tailwindcss/vite
+- **Networking:** axios
+- **State Management:** @tanstack/react-query
+- **Utilities:** dateformat, proptypes
+- **Icons:** react-icons
+- **Notifications:** react-hot-toast, sweetalert2
+- **Routing:** react-router-dom
+- **Performance:** react-window
 
-- **Persistence:**
-  - MongoDB database (via Express.js server)
-  - Instant updates using Optimistic UI approach
-
-- **Frontend UI:**
-  - Built with Vite.js and React
-  - Drag-and-drop using react-beautiful-dnd
-  - Clean, modern, and responsive design (limited to four colors)
-
-- **Optional Features:**
-  - Dark mode toggle
-  - Task due dates with color indicators
-  - Simple activity log
+## Installation Steps
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Configure Firebase credentials in `.env.local`.
+4. Start the development server with `npm run dev`.
 
 ## Technologies Used
-- **Frontend:** Vite.js, React, Tailwind CSS, react-beautiful-dnd
-- **Backend:** Express.js, MongoDB
-- **Authentication:** Firebase Authentication (Google Sign-In)
-
-## API Endpoints
-- `POST /tasks` – Add a new task
-- `GET /tasks` – Retrieve all tasks for the logged-in user
-- `PUT /tasks/:id` – Update task details (title, description, category)
-- `DELETE /tasks/:id` – Delete a task
-
-## Installation
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### Backend
-```bash
-cd backend
-npm install
-node index.js
-```
-
-## How to Use
-1. Sign in using Google Authentication.
-2. Add tasks by entering a title and optional description.
-3. Drag tasks between categories or reorder within categories.
-4. All changes are saved instantly.
+- Frontend: Vite.js, React, Tailwind CSS
+- Backend: Express.js, MongoDB
+- Authentication: Firebase Authentication
+- Drag-and-Drop: react-beautiful-dnd
 
 ---
+Developed by Mehefuj Ali
 
-**Enjoy using Taskify!**
