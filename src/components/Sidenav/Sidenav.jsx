@@ -10,7 +10,7 @@ const Sidenav = () => {
   const [sowForm, setSowForm] = useState(true);
   const [loading, setLoading] = useState(false);
   const { refetch } = useTasks();
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const { user } = useContext(AuthContext);
   const dark = useDark();
   const handleCreateTask = (e) => {
@@ -34,7 +34,7 @@ const Sidenav = () => {
       
     };
     axios
-      .post("http://localhost:3000/tasks", task)
+      .post(`${apiUrl}/tasks`, task)
       .then(() => {
         refetch();
         form.reset();

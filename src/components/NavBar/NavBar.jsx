@@ -12,7 +12,7 @@ const NavBar = () => {
      
       const {theme , toggleTheme} = useContext(ThemeContext)
       const dark = useDark()
-      console.log(theme)
+
      
   return (
     <div className={`   border-b ${dark?"border-b-gray-700  theme-card-bg":'border-gray-300 theme-card-bg'} `}>
