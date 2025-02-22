@@ -8,7 +8,7 @@ const useTasks = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const { user } = useContext(AuthContext);
 
-    const { refetch, data, isError, error } = useQuery({
+    const { refetch, data, isError, error , isLoading } = useQuery({
         queryKey: ["tasks", user?.email],
         queryFn: async () => {
             if (!user?.email) return;
@@ -35,7 +35,7 @@ const useTasks = () => {
         console.error("Error fetching tasks:", error);
     }
 
-    return { tasks, setTasks, refetch };
+    return { tasks, setTasks, refetch,isLoading };
 };
 
 export default useTasks;

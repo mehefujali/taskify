@@ -18,9 +18,10 @@ import { GrFormEdit } from "react-icons/gr";
 import useTasks from "../../Hooks/useTasks";
 import toast from "react-hot-toast";
 import MyButton from "../../Shaird/MyButton";
+import Loading from "../Loading/Loading";
 
 const Tasks = () => {
-  const { tasks, setTasks, refetch } = useTasks();
+  const { tasks, setTasks, refetch ,isLoading } = useTasks();
   const apiUrl = import.meta.env.VITE_API_URL;
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -119,6 +120,9 @@ const Tasks = () => {
       });
     }
   };
+  if(isLoading){
+    return <Loading/>
+  }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
