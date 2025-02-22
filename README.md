@@ -3,6 +3,8 @@
 ## Live Link
 [Taskify](https://taskify-k.web.app)
 
+![Taskify Preview](https://i.imgur.com/XvafsyK.png)
+
 ## Description
 Taskify is a task management application where users can add, edit, delete, and reorder tasks using a drag-and-drop interface. Tasks are categorized into three sections: **To-Do**, **In Progress**, and **Done**. All changes are instantly saved to the database, ensuring real-time synchronization. The app is responsive, offering a smooth experience on both desktop and mobile devices.
 
@@ -60,23 +62,6 @@ npm run dev
 cd backend
 npm install
 node index.js
-```
-
-## Folder Structure
-```
-Taskify
-├── frontend
-│   ├── public
-│   ├── src
-│   │   ├── components
-│   │   ├── pages
-│   │   ├── hooks
-│   │   ├── styles
-├── backend
-│   ├── config
-│   ├── controllers
-│   ├── models
-│   ├── routes
 ```
 
 ## How to Use
