@@ -10,7 +10,7 @@ const MyButton = ({children , text,fullwidth ,loading}) => {
             loading={loading}
             fullWidth={fullwidth}
             variant={text&&"text"}
-            className={` rounded ${!text && dark?"bg-white text-black":"bg-primary-light"} cursor-pointer justify-center  ${text&&"bg-transparent   theme-text"}`}
+            className={` rounded ${!text && dark?"bg-gray-200 text-black":"bg-primary-light"} cursor-pointer justify-center  ${text&&"bg-transparent   theme-text"}`}
             >{children}</Button>
       );
 };
