@@ -84,3 +84,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555; 
 }
+.bg-black{
+  background: transparent !important;
+}

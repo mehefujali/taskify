@@ -31,6 +31,7 @@ const Sidenav = () => {
       timestamp,
       userEmail,
       category: "todo",
+      
     };
     axios
       .post("http://localhost:3000/tasks", task)
