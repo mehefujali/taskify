@@ -4,7 +4,7 @@ import { RiLoader4Line, RiProgress2Line, RiTodoLine } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
 import { Button, Dialog, DialogHeader } from "@material-tailwind/react";
 import axios from "axios";
-import { CiMenuKebab } from "react-icons/ci";
+import { CiClock1, CiMenuKebab } from "react-icons/ci";
 import {
   Menu,
   MenuHandler,
@@ -18,7 +18,6 @@ import { GrFormEdit } from "react-icons/gr";
 import useTasks from "../../Hooks/useTasks";
 import toast from "react-hot-toast";
 import MyButton from "../../Shaird/MyButton";
-
 
 const Tasks = () => {
   const { tasks, setTasks, refetch, isLoading } = useTasks();
@@ -134,7 +133,7 @@ const Tasks = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="grid grid-cols-3 gap-2 xl:gap-4 h-full">
+      <div className="grid grid-cols-3 md:gap-2 xl:gap-4 h-full">
         {Object.entries(tasks).map(([column, items]) => (
           <Droppable key={column} droppableId={column}>
             {(provided) => (
@@ -164,10 +163,17 @@ const Tasks = () => {
                       >
                         <div className="cursor-default py-3 bg-gray-700 px-2 rounded-t w-full justify-between flex items-center">
                           <div className="text-white text-xs">
-                            {dateFormat(
-                              new Date(item.timestamp),
-                              "mmmm dS, yyyy, h:MM TT"
-                            )}
+                            <p className=" flex gap-1 items-start xl:items-center">
+                              {column === "todo" && <CiClock1 />}
+                              {column === "inProgress" && <RiProgress2Line  className="text-yellow-300" />}
+                              {column === "done" && (
+                                <IoCheckmarkDoneCircleOutline className=" text-green-300" />
+                              )}
+                              {dateFormat(
+                                new Date(item.timestamp),
+                                "mmmm dS, yyyy, h:MM TT"
+                              )}
+                            </p>
                           </div>
                           <Menu>
                             <MenuHandler>
