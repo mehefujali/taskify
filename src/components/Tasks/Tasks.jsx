@@ -1,6 +1,6 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
-import { RiProgress2Line, RiTodoLine } from "react-icons/ri";
+import { RiLoader4Line, RiProgress2Line, RiTodoLine } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
 import { Button, Dialog, DialogHeader } from "@material-tailwind/react";
 import axios from "axios";
@@ -18,10 +18,10 @@ import { GrFormEdit } from "react-icons/gr";
 import useTasks from "../../Hooks/useTasks";
 import toast from "react-hot-toast";
 import MyButton from "../../Shaird/MyButton";
-import Loading from "../Loading/Loading";
+
 
 const Tasks = () => {
-  const { tasks, setTasks, refetch ,isLoading } = useTasks();
+  const { tasks, setTasks, refetch, isLoading } = useTasks();
   const apiUrl = import.meta.env.VITE_API_URL;
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -55,19 +55,21 @@ const Tasks = () => {
         setUpdateTaskD(res.data);
       });
     }
-  }, [updateTaskId, apiUrl , open]);
+  }, [updateTaskId, apiUrl, open]);
 
-  const handleUpdate = (e) =>{
-    e.preventDefault()
-    const form = e.target
-    const title = form.title.value
-    const description = form.description.value
- 
-  
-    axios.put(`${apiUrl}/tasks/update/${updateTaskD?._id}` , {title,description})
-    .then(()=>{refetch()})
-    handleOpen()
-  }
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const description = form.description.value;
+
+    axios
+      .put(`${apiUrl}/tasks/update/${updateTaskD?._id}`, { title, description })
+      .then(() => {
+        refetch();
+      });
+    handleOpen();
+  };
 
   ////////////////////////////////////////////////////
 
@@ -120,8 +122,14 @@ const Tasks = () => {
       });
     }
   };
-  if(isLoading){
-    return <Loading/>
+  if (isLoading) {
+    return (
+      <div className=" w-full  h-full flex justify-center items-center">
+        <h1 className=" text-xl flex items-center gap-2">
+          <RiLoader4Line className=" text-5xl animate-spin" />
+        </h1>
+      </div>
+    );
   }
 
   return (
@@ -169,14 +177,14 @@ const Tasks = () => {
                                 </p>
                               </div>
                             </MenuHandler>
-                            <MenuList
-                             
-                              className="theme-bg px-0 w-fit"
-                            >
-                              <MenuItem  onClick={() => {
-                                handleOpen();
-                                setUpdateTaskId(item._id);
-                              }} className="hover:bg-black/20 rounded-none flex gap-1 items-center cursor-pointer">
+                            <MenuList className="theme-bg px-0 w-fit">
+                              <MenuItem
+                                onClick={() => {
+                                  handleOpen();
+                                  setUpdateTaskId(item._id);
+                                }}
+                                className="hover:bg-black/20 rounded-none flex gap-1 items-center cursor-pointer"
+                              >
                                 <GrFormEdit /> Edit
                               </MenuItem>
                               <MenuItem
@@ -207,27 +215,36 @@ const Tasks = () => {
           </Droppable>
         ))}
         <div>
-          <Dialog size="xs" open={open} handler={handleOpen} className=" p-4 theme-bg">
+          <Dialog
+            size="xs"
+            open={open}
+            handler={handleOpen}
+            className=" p-4 theme-bg"
+          >
             <DialogHeader className=" text-center mx-auto w-fit">
               Update task
             </DialogHeader>
-            <form onSubmit={handleUpdate} action="" className={` space-y-4 duration-200 `}>
+            <form
+              onSubmit={handleUpdate}
+              action=""
+              className={` space-y-4 duration-200 `}
+            >
               <input
-              defaultValue={updateTaskD?.title}
+                defaultValue={updateTaskD?.title}
                 name="title"
                 className=" w-full py-2 px-3 border color-text  rounded"
                 placeholder=" Enter task title"
                 type="text"
               />
               <textarea
-              defaultValue={updateTaskD?.description}
+                defaultValue={updateTaskD?.description}
                 placeholder="Descroption"
                 name="description"
                 className=" w-full resize-none py-2 px-3 border color-text rounded "
                 id=""
               ></textarea>
               <div className=" flex items-center">
-                <button className=" w-full  " >
+                <button className=" w-full  ">
                   {" "}
                   <MyButton fullwidth={true}>Update Task</MyButton>
                 </button>
